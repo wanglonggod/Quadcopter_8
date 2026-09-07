@@ -1,0 +1,29 @@
+如何使用微信摇周边功能
+1.服务提供者向微信后台申请服务，微信后台生成一个iBeaconID,并将其映射到服务提供者提供的服务，再将iBeaconID告诉服务提供者;
+2.服务提供者把第一步拿到的iBeaconID设置到iBeacon设备上，让iBeacon设备广播该iBeaconID;
+3.用户在该iBeacon设备的信号范围内打开微信摇一摇周边，微信App拿到该iBeaconID;
+4.微信通过第三步拿到的iBeaconID，向微信后台拉取相应的服务，展示在摇出来的结果上。
+5.用户点击摇出来结果，在微信内嵌的浏览器上，会带上用户信息跳转到服务提供者在第一步申请服务时填的url，进入应用页面
+
+具体设置如下：
+1.打开HM-1x的iBeacon功能， 发送AT+IBEA1
+2.设置UUID即iBeaconID，使用AT+IBEA0，AT+IBEA1，AT+IBEA2，AT+IBEA3
+3.配置Marjor和Minor,使用AT+MARJ0x,和AT+MINO0x指令
+
+举例如下:
+ UUID: 74278BDA-B644-4520-8F0C-720EAF059935
+Major: 10023
+Minor: 10025
+
+发送的指令如下:
+AT+IBEA1   -->打开iBeacon功能,如果是基站产品，则不需要此指令
+AT+IBE074278BDA -->配置Beacon UUID 01-08个字符
+AT+IBE1B6444520 -->配置Beacon UUID 08-16字符
+AT+IBE28F0C720E -->配置Beacon UUID 16-24字符
+AT+IBE3AF059935 -->配置Beacon UUID 24-32字符
+
+AT+MARJ0x2727   -->配置Marjor, 注意,微信给的都是10进制的，要将10进制转换成16进制字符串再发送, 10023转换成16进制是2727
+AT+MINO0x2729   -->配置Minor , 注意,微信给的都是10进制的，要将10进制转换成16进制字符串再发送, 10025转换成16进制是2729
+
+
+
