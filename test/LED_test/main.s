@@ -65,13 +65,15 @@ main_loop	; 主循环标签
 	
 	B 		main_loop	;	跳转至主循环入口
 	
+	
+	;============================子程序===============================
 delay_sub	; 延时子程序标签
-	LDR		R2, =0x500000	; 选取R2作为循环计数器，0x500000作为计数器初始值
+	LDR		R2, =0x250000	; 选取R2作为循环计数器，0x500000作为计数器初始值
 delay_inner	; 循环内部标签
 		SUB		R2, R2, #1	; 计数器执行自减操作
-		CMP		R2, #0	; 判断R2是否为0，将delay_inner置为R2 - 0
-		BNE		delay_inner
-		BX		LR
+		CMP		R2, #0	; 判断R2是否为0，将条件标志位置为R2 - 0
+		BNE		delay_inner	; 若条件标志位不为0则跳转至delay_inner
+		BX		LR	; 跳转回主循环
 		
 Fault_Handler	; 异常处理标签
 	B	Fault_Handler	; 无条件跳转至Fault_Handler，形成死循环
