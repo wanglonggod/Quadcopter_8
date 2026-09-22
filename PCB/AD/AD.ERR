@@ -1,6 +1,8 @@
-Component Rule Check Report for : D:\STM32Project\Quadcopter_8\test\AD_test\AD\AD.SchLib
+Altium Designer System: Library Component Rule Check
+PCB File : AD
+Date     : 2026/9/16
+Time     : 17:36:49
 
 
-Name                Errors
+Name                Warnings
 ------------------------------------------------------------------
-LED                 (No Description) 
